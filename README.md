@@ -79,7 +79,7 @@ Request the following information from your 3PL Central Administrator or 3PL Cen
 - client_id: A secure OAuth 2.0 identifier for each application/client.
 - client_secret: A secure OAuth 2.0 secret key for application/client authentication.
 - tpl_key: A warehouse-specic 3PL key.
-- base_url: API URL to which /endpoints are appended. Example: `http://secure-wms.com/`
+- base_url: API URL to which /endpoints are appended. Example: `http://secure-wms.com`
 - user_login_id: Integer ID number for the user.
 - customer_id: Integer ID number for the customer organization.
 - facility_id: Integer ID number for the warehouse facility.
@@ -112,15 +112,15 @@ Request the following information from your 3PL Central Administrator or 3PL Cen
 
     ```json
     {
-        "start_date": "2019-01-01T00:00:00Z",
-        "client_id": "OAUTH_CLIENT_ID",
-        "client_secret": "OAUTH_CLIENT_SECRET",
-        "tpl_key": "WH_SPECIFIC_3PL_KEY",
-        "user_login_id": "USER_INTEGER_ID",
+        "base_url": "https://secure-wms.com",
+        "client_id": "xxx",
+        "client_secret": "xxx",
+        "tpl_key": "xxx",
+        "user_login_id": "1",
         "user_agent": "tap-3plcentral <my.email@domain.com>",
-        "base_url": "http://secure-wms.com",
-        "customer_id": "CUSTOMER_INTEGER_ID",
-        "facility_id": "FACILITY_INTEGER_ID"
+        "customer_id": "50",
+        "facility_id": "1",
+        "start_date": "2019-01-01T00:00:00Z"
     }
     ```
 
