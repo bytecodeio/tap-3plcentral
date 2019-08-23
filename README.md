@@ -97,6 +97,7 @@ Request the following information from your 3PL Central Administrator or 3PL Cen
     > cd .../tap-3plcentral
     > pip install .
     ```
+
 2. Dependent libraries
     The following dependent libraries were installed.
     ```bash
@@ -108,22 +109,22 @@ Request the following information from your 3PL Central Administrator or 3PL Cen
     ```
     - [singer-tools](https://github.com/singer-io/singer-tools)
     - [target-stitch](https://github.com/singer-io/target-stitch)
+
 3. Create your tap's config file which should look like the following:
 
     ```json
     {
         "base_url": "https://secure-wms.com",
-        "client_id": "xxx",
-        "client_secret": "xxx",
-        "tpl_key": "xxx",
-        "user_login_id": "1",
+        "client_id": "OAUTH_CLIENT_ID",
+        "client_secret": "OAUTH_CLIENT_SECRET",
+        "tpl_key": "WH_SPECIFIC_3PL_KEY",
+        "user_login_id": "USER_INTEGER_ID",
         "user_agent": "tap-3plcentral <my.email@domain.com>",
-        "customer_id": "50",
-        "facility_id": "1",
+        "customer_id": "CUSTOMER_INTEGER_ID",
+        "facility_id": "FACILITY_INTEGER_ID",
         "start_date": "2019-01-01T00:00:00Z"
     }
     ```
-
 4. Run the Tap in Discovery Mode
     This creates a catalog.json for selecting objects/fields to integrate:
     ```bash
