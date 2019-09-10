@@ -98,7 +98,7 @@ def transform_json(this_json, stream, path):
     converted_json = convert_json(removed_json)
     transformed_json = converted_json
     if stream == 'stock_summaries':
-        transformed_json = transform_stock_summaries(converted_json, path)
+        transformed_json = transform_stock_summaries(converted_json, convert(path))
     elif stream == 'locations':
-        transformed_json = transform_locations(converted_json, path)
+        transformed_json = transform_locations(converted_json, convert(path))
     return transformed_json

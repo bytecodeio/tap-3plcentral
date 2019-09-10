@@ -376,14 +376,14 @@ def sync(client, config, catalog, state, start_date):
         },
 
         'stock_summaries': {
-            'path': 'stocksummaries',
+            'path': 'inventory/stocksummaries',
             'params': {
                 'pgsiz': 200,
                 'facilityid': facility_id
             },
             'data_key': 'Summaries',
             'id_fields': ['facility_id', 'item_id']
-        },
+        } ,
 
         'customers': {
             'path': 'customers',
