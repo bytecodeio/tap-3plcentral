@@ -10,8 +10,10 @@ spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
 - Pulls raw data from the [3PLCentral REST API](http://api.3plcentral.com/rels/)
 - Extracts the following resources:
   - [Customers](http://api.3plcentral.com/rels/customers/customers)
-    - [SKU Items](http://api.3plcentral.com/rels/customers/items)
-    - [Stock Details](http://api.3plcentral.com/rels/inventory/stockdetails)
+  - [SKU Items](http://api.3plcentral.com/rels/customers/items)
+  - [Stock Details](http://api.3plcentral.com/rels/inventory/stockdetails)
+  - [Stock Summaries](http://api.3plcentral.com/rels/inventory/stocksummaries)
+  - [Locations](http://api.3plcentral.com/rels/inventory/locations)
   - [Inventory](http://api.3plcentral.com/rels/inventory/inventory)
   - [Orders (with Order Items and Packages)](http://api.3plcentral.com/rels/orders/orders)
 - Outputs the schema for each resource
@@ -49,6 +51,22 @@ spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
   - Bookmark: received_date (date-time)
 - Transformations: Fields camelCase to snake_case, De-nest and remove nodes (ReadOnly, embedded, links).
 - Parent: customer
+
+[**stock_summaries**](http://api.3plcentral.com/rels/inventory/stocksummaries)
+- Endpoint: https://secure-wms.com/inventory/stocksummaries
+- Primary keys: facility_id, item_id
+- Foreign keys: item_id (sku_items), item_identifier > id (sku_items), facility_id (facilities)
+- Replication strategy: Full table (query all)
+  - Filters: facility_id (from config.json)
+- Transformations: Fields camelCase to snake_case, De-nest and remove nodes (ReadOnly, embedded, links), de-nest item_id.
+
+[**locations**](http://api.3plcentral.com/rels/inventory/locations)
+- Endpoint: https://secure-wms.com/inventory/facilities/[facility_id]/locations
+- Primary keys: facility_id, location_id
+- Foreign keys: item_identifier > id (sku_items), facility_id (facilities), customer_identifier > id (customers)
+- Replication strategy: Full table (query all)
+  - Filters: facility_id (from config.json)
+- Transformations: Fields camelCase to snake_case, De-nest and remove nodes (ReadOnly, embedded, links), de-nest facility_id and location_id.
 
 [**inventory**](http://api.3plcentral.com/rels/inventory/inventory)
 - Endpoint: https://secure-wms.com/inventory
