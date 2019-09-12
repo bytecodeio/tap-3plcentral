@@ -573,7 +573,7 @@
 														},
 														"num_units": {
 															"type": ["null", "number"],
-															c
+															"multipleOf": 1e-08
 														},
 														"charge_label": {
 															"type": ["null", "string"]
